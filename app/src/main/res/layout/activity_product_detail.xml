@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Minimal Product Details screen - one reusable layout for every burger. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:padding="@dimen/screen_padding"
+    tools:context=".ProductDetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/detail_image"
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:contentDescription="@string/splash_burger_content_description"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_image" />
+
+        <TextView
+            android:id="@+id/detail_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_body"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_name" />
+
+        <TextView
+            android:id="@+id/detail_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_rating" />
+
+        <TextView
+            android:id="@+id/detail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_description" />
+
+        <TextView
+            android:id="@+id/detail_spicy_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/detail_spicy_medium"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_heading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_price" />
+
+        <SeekBar
+            android:id="@+id/detail_spicy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="2"
+            android:progress="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_spicy_label" />
+
+        <TextView
+            android:id="@+id/detail_quantity_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/quantity"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_heading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_spicy" />
+
+        <Button
+            android:id="@+id/detail_minus"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:text="−"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+        <TextView
+            android:id="@+id/detail_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="1"
+            android:textSize="@dimen/text_title"
+            app:layout_constraintStart_toEndOf="@+id/detail_minus"
+            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+        <Button
+            android:id="@+id/detail_plus"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="+"
+            app:layout_constraintStart_toEndOf="@+id/detail_quantity"
+            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+        <TextView
+            android:id="@+id/detail_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/detail_order_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/order_now"
+            android:textColor="@color/colorOnPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_total" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

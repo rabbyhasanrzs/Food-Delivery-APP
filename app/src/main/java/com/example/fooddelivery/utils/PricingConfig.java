@@ -7,11 +7,11 @@ package com.example.fooddelivery.utils;
  * delivery fee. Product, topping and side prices do <b>not</b> live
  * here; they are stored per item in SQLite (see DatabaseHelper).</p>
  *
- * <p><b>PENDING CONFIGURATION - no prices have been invented.</b>
- * The tax rate and the delivery fee are marked with the sentinel
- * value -1 until the user confirms the BDT values. Every calculation
- * method in this class refuses to run while pricing is pending, so
- * the app can never silently charge a made-up tax or fee.</p>
+ * <p><b>DEMO VALUES FOR THE LAB FINAL - NOT FINAL CONFIRMED PRICES.</b>
+ * Tax is 5% and the delivery fee is ৳30, chosen only so the app can
+ * run end to end tomorrow. They must be replaced by the confirmed
+ * BDT values before any real use. They live only here - one place -
+ * and the demo menu prices live only in ProductCatalog.</p>
  *
  * <p>Money is always whole taka, stored and calculated as integers
  * - never as float or double (blueprint Section 9).</p>
@@ -27,15 +27,15 @@ public final class PricingConfig {
 
     /**
      * Tax rate in percent.
-     * PENDING CONFIGURATION - do not use until confirmed in BDT.
+     * DEMO VALUE FOR THE LAB FINAL (5%) - replace with the confirmed rate.
      */
-    public static final int TAX_RATE_PERCENT = PENDING;
+    public static final int TAX_RATE_PERCENT = 5;
 
     /**
      * Delivery fee in whole taka (BDT).
-     * PENDING CONFIGURATION - do not use until confirmed in BDT.
+     * DEMO VALUE FOR THE LAB FINAL (৳30) - replace with the confirmed fee.
      */
-    public static final int DELIVERY_FEE_BDT = PENDING;
+    public static final int DELIVERY_FEE_BDT = 30;
 
     /** True only when every pending value has been confirmed. */
     public static boolean isConfigured() {

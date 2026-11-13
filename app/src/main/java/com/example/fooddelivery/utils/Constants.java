@@ -38,4 +38,11 @@ public final class Constants {
 
     /** Intent extra used by SplashActivity when it opens MainActivity. */
     public static final String EXTRA_WAS_LOGGED_IN = "was_logged_in";
+
+    /** Intent extras for the order flow: Home -> Details -> Checkout -> Success. */
+    public static final String EXTRA_PRODUCT_ID = "product_id";
+    public static final String EXTRA_QUANTITY = "quantity";
+    public static final String EXTRA_SPICY_LEVEL = "spicy_level";
+    public static final String EXTRA_ORDER_ID = "order_id";
+    public static final String EXTRA_TOTAL_BDT = "total_bdt";
 }

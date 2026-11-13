@@ -21,13 +21,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- MainActivity is kept as the Home host (blueprint Section 1).
-             It is no longer the launcher; Splash opens it. Its layout
-             is replaced only in the Home phase (Phase 3). -->
+        <!-- MainActivity is the Home host (blueprint Section 1).
+             Splash opens it after login; it is no longer the launcher. -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".CheckoutActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".OrderSuccessActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

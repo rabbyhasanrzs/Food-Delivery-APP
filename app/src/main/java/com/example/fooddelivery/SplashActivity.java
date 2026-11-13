@@ -17,10 +17,8 @@ import com.example.fooddelivery.utils.SessionManager;
  * 2 seconds, then routes by login state. The session is read through
  * {@link SessionManager}, as specified in the blueprint.</p>
  *
- * <p>Phase 2 will route signed-out users to LoginActivity. Until then,
- * MainActivity (Home) is the destination for every user, so the app
- * still runs end-to-end after Phase 1. Nothing is merged to main
- * without review.</p>
+ * <p>Signed-out users now go to LoginActivity (lab-final flow).
+ * Signed-in users go to MainActivity (Home).</p>
  */
 public class SplashActivity extends AppCompatActivity {
 
@@ -33,13 +31,15 @@ public class SplashActivity extends AppCompatActivity {
 
         handler.postDelayed(() -> {
             SessionManager sessionManager = new SessionManager(SplashActivity.this);
-            // The login state is read here on purpose, even though both
-            // routes currently lead to MainActivity (Home).
-            // Phase 2: if (!sessionManager.isLoggedIn()) start LoginActivity.
             boolean isLoggedIn = sessionManager.isLoggedIn();
 
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            intent.putExtra(Constants.EXTRA_WAS_LOGGED_IN, isLoggedIn);
+            Intent intent;
+            if (isLoggedIn) {
+                intent = new Intent(SplashActivity.this, MainActivity.class);
+                intent.putExtra(Constants.EXTRA_WAS_LOGGED_IN, true);
+            } else {
+                intent = new Intent(SplashActivity.this, LoginActivity.class);
+            }
             startActivity(intent);
             finish();
         }, Constants.SPLASH_DELAY_MS);

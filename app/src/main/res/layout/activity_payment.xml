@@ -150,6 +150,8 @@
                     android:background="@drawable/bg_btn_dark"
                     android:buttonTint="@color/white"
                     android:checked="true"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_logo_mastercard"
                     android:paddingStart="12dp"
                     android:text="Credit card   •••• •••• 0505"
                     android:textColor="@color/white" />
@@ -161,6 +163,8 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bg_card"
                     android:buttonTint="@color/red"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_logo_visa"
                     android:paddingStart="12dp"
                     android:text="Debit card   •••• •••• 0505"
                     android:textColor="@color/black" />

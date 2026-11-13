@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Minimal Home screen - RabbY header, search, 2-column product grid. -->
+<!-- Home - polished: fitsSystemWindows keeps the brand clear of the
+     status bar / camera cutout; soft background, white search field,
+     section title, then the 2-column product grid. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/colorAccentSoft"
+    android:fitsSystemWindows="true"
     android:padding="@dimen/screen_padding"
     tools:context=".MainActivity">
 
@@ -33,7 +36,7 @@
         android:id="@+id/home_greeting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="@string/home_greeting_guest"
         android:textColor="@color/colorTextSecondary"
         android:textSize="@dimen/text_body"
@@ -54,15 +57,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_greeting" />
 
+    <TextView
+        android:id="@+id/home_section_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/home_section_title"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/text_heading"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_search" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_product_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_search"
+        app:layout_constraintTop_toBottomOf="@+id/home_section_title"
         tools:listitem="@layout/item_product" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

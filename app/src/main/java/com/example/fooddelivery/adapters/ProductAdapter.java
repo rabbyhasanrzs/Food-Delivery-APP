@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddelivery.R;
 import com.example.fooddelivery.models.Product;
 import com.example.fooddelivery.utils.CurrencyFormatter;
+import com.example.fooddelivery.utils.ProductImages;
 
 import java.util.List;
 
@@ -57,10 +58,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = products.get(position);
         holder.nameText.setText(product.getName());
         holder.priceText.setText(CurrencyFormatter.format(product.getPriceBdt()));
-        holder.ratingText.setText(String.valueOf(product.getRating()));
-        // Placeholder image for every product until the original
-        // food assets are supplied (blueprint Section 6).
-        holder.imageView.setImageResource(R.drawable.img_splash_burger);
+        holder.ratingText.setText("★ " + product.getRating());
+        holder.deliveryTimeText.setText(product.getDeliveryTime());
+        // Real product photo when the JPG is present, placeholder otherwise.
+        ProductImages.setProductImage(holder.imageView, product.getImageName());
         holder.favouriteText.setText(product.isFavourite() ? "♥" : "♡");
         holder.favouriteText.setTextColor(product.isFavourite()
                 ? holder.itemView.getContext().getColor(R.color.colorPrimary)
@@ -87,6 +88,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         final TextView nameText;
         final TextView priceText;
         final TextView ratingText;
+        final TextView deliveryTimeText;
         final TextView favouriteText;
 
         ProductViewHolder(@NonNull View itemView) {
@@ -95,6 +97,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             nameText = itemView.findViewById(R.id.product_name);
             priceText = itemView.findViewById(R.id.product_price);
             ratingText = itemView.findViewById(R.id.product_rating);
+            deliveryTimeText = itemView.findViewById(R.id.product_delivery_time);
             favouriteText = itemView.findViewById(R.id.product_favourite);
         }
     }

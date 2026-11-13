@@ -16,6 +16,7 @@ import com.example.fooddelivery.models.User;
 import com.example.fooddelivery.utils.Constants;
 import com.example.fooddelivery.utils.CurrencyFormatter;
 import com.example.fooddelivery.utils.PricingConfig;
+import com.example.fooddelivery.utils.ProductImages;
 import com.example.fooddelivery.utils.SessionManager;
 
 /**
@@ -63,6 +64,9 @@ public class CheckoutActivity extends AppCompatActivity {
         subtotalBdt = product.getPriceBdt() * quantity;
         taxBdt = PricingConfig.calculateTax(subtotalBdt);
         totalBdt = PricingConfig.calculateTotal(subtotalBdt);
+
+        ProductImages.setProductImage(
+                findViewById(R.id.checkout_product_image), product.getImageName());
 
         ((TextView) findViewById(R.id.checkout_product)).setText(
                 getString(R.string.checkout_product_line,

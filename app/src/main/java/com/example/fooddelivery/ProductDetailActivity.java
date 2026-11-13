@@ -14,6 +14,7 @@ import com.example.fooddelivery.database.DatabaseHelper;
 import com.example.fooddelivery.models.Product;
 import com.example.fooddelivery.utils.Constants;
 import com.example.fooddelivery.utils.CurrencyFormatter;
+import com.example.fooddelivery.utils.ProductImages;
 
 /**
  * Minimal Product Details screen - one reusable screen for every
@@ -43,7 +44,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         }
 
         ImageView imageView = findViewById(R.id.detail_image);
-        imageView.setImageResource(R.drawable.img_splash_burger);
+        ProductImages.setProductImage(imageView, product.getImageName());
 
         ((TextView) findViewById(R.id.detail_name)).setText(product.getName());
         ((TextView) findViewById(R.id.detail_description)).setText(product.getDescription());

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Minimal Product Details screen - one reusable layout for every burger. -->
+<!-- Product Details - polished: large real photo in a card at the top,
+     then name / rating / description, Spicy and Quantity in cards,
+     and a full-width red Order Now button. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/colorAccentSoft"
+    android:fitsSystemWindows="true"
     android:padding="@dimen/screen_padding"
     tools:context=".ProductDetailActivity">
 
@@ -13,15 +16,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/detail_image"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/detail_photo_card"
             android:layout_width="0dp"
-            android:layout_height="220dp"
-            android:contentDescription="@string/splash_burger_content_description"
-            android:scaleType="centerCrop"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorCard"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:contentDescription="@string/splash_burger_content_description"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_splash_burger" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/detail_name"
@@ -33,7 +46,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_image" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_photo_card" />
 
         <TextView
             android:id="@+id/detail_rating"
@@ -67,91 +80,132 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_description" />
 
-        <TextView
-            android:id="@+id/detail_spicy_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/detail_spicy_medium"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="@dimen/text_heading"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_price" />
-
-        <SeekBar
-            android:id="@+id/detail_spicy"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/detail_spicy_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:max="2"
-            android:progress="1"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/colorCard"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_spicy_label" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_price">
 
-        <TextView
-            android:id="@+id/detail_quantity_label"
-            android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/card_padding">
+
+                <TextView
+                    android:id="@+id/detail_spicy_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_spicy_medium"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/text_heading"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <SeekBar
+                    android:id="@+id/detail_spicy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:max="2"
+                    android:progress="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_spicy_label" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/detail_quantity_card"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/quantity"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="@dimen/text_heading"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_spicy" />
-
-        <Button
-            android:id="@+id/detail_minus"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:text="−"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
-
-        <TextView
-            android:id="@+id/detail_quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="1"
-            android:textSize="@dimen/text_title"
-            app:layout_constraintStart_toEndOf="@+id/detail_minus"
-            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
-
-        <Button
-            android:id="@+id/detail_plus"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="+"
-            app:layout_constraintStart_toEndOf="@+id/detail_quantity"
-            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
-
-        <TextView
-            android:id="@+id/detail_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_title"
-            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/colorCard"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_spicy_card">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/card_padding">
+
+                <TextView
+                    android:id="@+id/detail_quantity_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quantity"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/text_heading"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/detail_minus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:text="−"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+                <TextView
+                    android:id="@+id/detail_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="1"
+                    android:textSize="@dimen/text_title"
+                    app:layout_constraintStart_toEndOf="@+id/detail_minus"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+                <Button
+                    android:id="@+id/detail_plus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="+"
+                    app:layout_constraintStart_toEndOf="@+id/detail_quantity"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+                <TextView
+                    android:id="@+id/detail_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_title"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/detail_order_button"
             android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginTop="24dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/order_now"
             android:textColor="@color/colorOnPrimary"
+            android:textSize="@dimen/text_heading"
+            app:cornerRadius="@dimen/corner_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_total" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

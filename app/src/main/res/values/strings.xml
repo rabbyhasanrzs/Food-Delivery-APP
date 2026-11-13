@@ -27,8 +27,13 @@
     <string name="detail_spicy_medium">Spicy: Medium</string>
     <string name="quantity">Quantity</string>
     <string name="order_now">ORDER NOW</string>
+    <string name="home_section_title">Popular burgers</string>
     <!-- Checkout -->
     <string name="checkout_title">Checkout</string>
+    <string name="checkout_subtitle">Review your order</string>
+    <string name="delivery_details">Delivery details</string>
+    <string name="payment_method">Payment method</string>
+    <string name="delivery_in_15_30">Delivery in 15–30 mins</string>
     <string name="checkout_product_line">%1$s × %2$d (%3$s)</string>
     <string name="subtotal">Subtotal</string>
     <string name="tax">Tax</string>

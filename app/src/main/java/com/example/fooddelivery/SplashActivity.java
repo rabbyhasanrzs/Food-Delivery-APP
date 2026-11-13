@@ -8,6 +8,7 @@ import android.os.Looper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fooddelivery.utils.Constants;
+import com.example.fooddelivery.utils.ProductImages;
 import com.example.fooddelivery.utils.SessionManager;
 
 /**
@@ -28,6 +29,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        // Real burger photo when the JPG is present, placeholder otherwise.
+        ProductImages.setProductImage(
+                findViewById(R.id.splash_burger_image), "img_splash_burger_photo");
 
         handler.postDelayed(() -> {
             SessionManager sessionManager = new SessionManager(SplashActivity.this);

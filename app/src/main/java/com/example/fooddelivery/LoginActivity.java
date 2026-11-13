@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fooddelivery.database.DatabaseHelper;
 import com.example.fooddelivery.models.User;
+import com.example.fooddelivery.utils.ProductImages;
 import com.example.fooddelivery.utils.SessionManager;
 
 /**
@@ -31,6 +32,9 @@ public class LoginActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         sessionManager = new SessionManager(this);
+
+        ProductImages.setProductImage(
+                findViewById(R.id.login_hero), "img_splash_burger_photo");
 
         emailInput = findViewById(R.id.login_email);
         passwordInput = findViewById(R.id.login_password);

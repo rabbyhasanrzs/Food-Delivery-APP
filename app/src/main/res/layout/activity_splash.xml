@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Phase 1 - Splash screen (blueprint Sections 2, 4 and 8).
+    Red-to-pink gradient, white RabbY brand in the centre, and the
+    placeholder burger image along the bottom, as designed.
+    The image is a placeholder vector (img_splash_burger.xml) -
+    replace it with the original asset under the same name when
+    it is supplied (blueprint Section 6).
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_gradient"
+    tools:context=".SplashActivity">
+
+    <TextView
+        android:id="@+id/splash_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:text="@string/brand_name"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="56sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/splash_tagline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
+
+    <TextView
+        android:id="@+id/splash_tagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/splash_tagline"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splash_brand" />
+
+    <ImageView
+        android:id="@+id/splash_burger_image"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:contentDescription="@string/splash_burger_content_description"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_splash_burger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

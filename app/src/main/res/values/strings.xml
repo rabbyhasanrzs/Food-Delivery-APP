@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Food Delivery</string>
+    <string name="brand_name">RabbY</string>
+    <string name="splash_tagline">Order your favourite food!</string>
+    <string name="splash_burger_content_description">Burger illustration</string>
 </resources>

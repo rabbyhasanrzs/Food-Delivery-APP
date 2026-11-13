@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Phase 1 - RabbY red-and-white design tokens (blueprint Section 2). -->
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#B71C1C</color>
+    <color name="colorPrimaryDark">#8E1B1F</color>
+    <color name="colorPrimaryLight">#E53935</color>
+    <color name="colorAccentSoft">#FFF5F5</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorCard">#FFFFFF</color>
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#616161</color>
+    <color name="colorDivider">#E0E0E0</color>
+    <color name="colorSuccess">#2E7D32</color>
+    <color name="colorSplashGradientStart">#E53935</color>
+    <color name="colorSplashGradientEnd">#F06292</color>
+    <color name="colorOnPrimary">#FFFFFFFF</color>
 </resources>

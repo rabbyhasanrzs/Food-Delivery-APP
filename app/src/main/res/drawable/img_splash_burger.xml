@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    PLACEHOLDER IMAGE - Phase 1 (blueprint Section 6).
+    A simple stylised burger drawn as a vector, used only until the
+    original img_splash_burger asset is supplied. Replace this file
+    with a PNG/WebP under the same name (img_splash_burger) - no
+    layout or code change is needed when the real asset arrives.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="160dp"
+    android:viewportWidth="240"
+    android:viewportHeight="160">
+    <!-- Top bun -->
+    <path
+        android:fillColor="#FFC46B"
+        android:pathData="M20,80 Q120,10 220,80 Z" />
+    <!-- Cheese -->
+    <path
+        android:fillColor="#FFB300"
+        android:pathData="M20,82 L45,102 L70,82 L95,102 L120,82 L145,102 L170,82 L195,102 L220,82 L220,92 L20,92 Z" />
+    <!-- Patty -->
+    <path
+        android:fillColor="#6D4C41"
+        android:pathData="M20,92 L220,92 L220,112 L20,112 Z" />
+    <!-- Lettuce -->
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M20,112 Q45,122 70,112 Q95,122 120,112 Q145,122 170,112 Q195,122 220,112 L220,122 L20,122 Z" />
+    <!-- Bottom bun -->
+    <path
+        android:fillColor="#FFC46B"
+        android:pathData="M20,122 L220,122 Q220,150 120,150 Q20,150 20,122 Z" />
+</vector>

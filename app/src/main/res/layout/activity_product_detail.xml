@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Product Details - polished: large real photo in a card at the top,
-     then name / rating / description, Spicy and Quantity in cards,
-     and a full-width red Order Now button. -->
+<!-- Product Details - as designed: white rounded screen, back arrow
+     and search at the top, large burger photo, name, rating and time,
+     description, Spicy slider (Mild-Hot), Portion stepper, then the
+     price pill and a black ORDER NOW button at the bottom. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccentSoft"
+    android:background="@color/colorBackground"
     android:fitsSystemWindows="true"
     android:padding="@dimen/screen_padding"
     tools:context=".ProductDetailActivity">
@@ -16,25 +17,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/detail_photo_card"
+        <TextView
+            android:id="@+id/detail_back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/search_background"
+            android:gravity="center"
+            android:text="←"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail_search"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/search_background"
+            android:gravity="center"
+            android:text="⌕"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/detail_image"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/colorCard"
-            app:cardCornerRadius="@dimen/corner_radius"
-            app:cardElevation="2dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/splash_burger_content_description"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_splash_burger"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/detail_image"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:contentDescription="@string/splash_burger_content_description"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_splash_burger" />
-        </com.google.android.material.card.MaterialCardView>
+            app:layout_constraintTop_toBottomOf="@+id/detail_back" />
 
         <TextView
             android:id="@+id/detail_name"
@@ -46,13 +63,13 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_photo_card" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_image" />
 
         <TextView
             android:id="@+id/detail_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:textColor="@color/colorTextSecondary"
             android:textSize="@dimen/text_body"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +79,7 @@
             android:id="@+id/detail_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/colorTextSecondary"
             android:textSize="@dimen/text_body"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,142 +87,140 @@
             app:layout_constraintTop_toBottomOf="@+id/detail_rating" />
 
         <TextView
-            android:id="@+id/detail_price"
+            android:id="@+id/detail_spicy_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_title"
+            android:layout_marginTop="20dp"
+            android:text="@string/detail_spicy_medium"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_heading"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_description" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/detail_spicy_card"
+        <SeekBar
+            android:id="@+id/detail_spicy"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:max="2"
+            android:progress="1"
+            android:progressTint="@color/colorPrimary"
+            android:thumbTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_spicy_label" />
+
+        <TextView
+            android:id="@+id/detail_spicy_mild"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/spicy_mild"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_caption"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_spicy" />
+
+        <TextView
+            android:id="@+id/detail_spicy_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/spicy_hot"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_caption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_spicy" />
+
+        <TextView
+            android:id="@+id/detail_quantity_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/portion"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_heading"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_spicy_mild" />
+
+        <Button
+            android:id="@+id/detail_minus"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="−"
+            android:textColor="@color/colorOnPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+        <TextView
+            android:id="@+id/detail_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="1"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/detail_minus"
+            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+        <Button
+            android:id="@+id/detail_plus"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="+"
+            android:textColor="@color/colorOnPrimary"
+            app:layout_constraintStart_toEndOf="@+id/detail_quantity"
+            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+        <TextView
+            android:id="@+id/detail_total"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/colorCard"
-            app:cardCornerRadius="@dimen/corner_radius"
-            app:cardElevation="2dp"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_body"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
+
+        <TextView
+            android:id="@+id/detail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/red_pill_background"
+            android:gravity="center"
+            android:minWidth="110dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="@dimen/text_heading"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_price">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/card_padding">
-
-                <TextView
-                    android:id="@+id/detail_spicy_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_spicy_medium"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textSize="@dimen/text_heading"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <SeekBar
-                    android:id="@+id/detail_spicy"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:max="2"
-                    android:progress="1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/detail_spicy_label" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/detail_quantity_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/colorCard"
-            app:cardCornerRadius="@dimen/corner_radius"
-            app:cardElevation="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_spicy_card">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/card_padding">
-
-                <TextView
-                    android:id="@+id/detail_quantity_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quantity"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textSize="@dimen/text_heading"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/detail_minus"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
-                    android:text="−"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
-
-                <TextView
-                    android:id="@+id/detail_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="1"
-                    android:textSize="@dimen/text_title"
-                    app:layout_constraintStart_toEndOf="@+id/detail_minus"
-                    app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
-
-                <Button
-                    android:id="@+id/detail_plus"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="+"
-                    app:layout_constraintStart_toEndOf="@+id/detail_quantity"
-                    app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
-
-                <TextView
-                    android:id="@+id/detail_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_title"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/detail_quantity_label" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+            app:layout_constraintTop_toBottomOf="@+id/detail_minus" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/detail_order_button"
             android:layout_width="0dp"
-            android:layout_height="52dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/black"
             android:text="@string/order_now"
             android:textColor="@color/colorOnPrimary"
-            android:textSize="@dimen/text_heading"
-            app:cornerRadius="@dimen/corner_radius"
+            app:cornerRadius="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_quantity_card" />
+            app:layout_constraintStart_toEndOf="@+id/detail_price"
+            app:layout_constraintTop_toBottomOf="@+id/detail_minus" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

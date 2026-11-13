@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Minimal Registration screen - local accounts only, no social buttons. -->
+<!-- Registration - as designed: white card, red RabbY logo, "Create
+     your account", fields with icons, red Sign up button, "or
+     continue with" row with Google/Apple/Facebook icons (display
+     only - no social login behind them), burger photo at the
+     bottom and a Login link. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccentSoft"
+    android:background="@color/colorBackground"
     android:fitsSystemWindows="true"
     android:padding="@dimen/screen_padding"
     tools:context=".RegisterActivity">
@@ -14,24 +18,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/register_hero_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/corner_radius"
-            app:cardElevation="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
+        <TextView
+            android:id="@+id/register_back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/search_background"
+            android:gravity="center"
+            android:text="←"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/register_hero"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:contentDescription="@string/splash_burger_content_description"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_splash_burger" />
-        </com.google.android.material.card.MaterialCardView>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/register_brand"
@@ -45,29 +42,51 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_hero_card" />
+            app:layout_constraintTop_toBottomOf="@+id/register_back" />
+
+        <TextView
+            android:id="@+id/register_tagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/splash_tagline"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_brand" />
 
         <TextView
             android:id="@+id/register_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/register_title"
             android:textColor="@color/colorTextPrimary"
             android:textSize="@dimen/text_title"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_brand" />
+            app:layout_constraintTop_toBottomOf="@+id/register_tagline" />
+
+        <TextView
+            android:id="@+id/register_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/register_subtitle"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_body"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_title" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/register_name_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_title">
+            app:layout_constraintTop_toBottomOf="@+id/register_subtitle"
+            app:startIconDrawable="@drawable/ic_person">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/register_name"
@@ -81,10 +100,11 @@
             android:id="@+id/register_email_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_name_layout">
+            app:layout_constraintTop_toBottomOf="@+id/register_name_layout"
+            app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/register_email"
@@ -98,10 +118,12 @@
             android:id="@+id/register_password_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
+            app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_email_layout">
+            app:layout_constraintTop_toBottomOf="@+id/register_email_layout"
+            app:startIconDrawable="@drawable/ic_lock">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/register_password"
@@ -115,10 +137,12 @@
             android:id="@+id/register_confirm_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
+            app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_password_layout">
+            app:layout_constraintTop_toBottomOf="@+id/register_password_layout"
+            app:startIconDrawable="@drawable/ic_lock">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/register_confirm_password"
@@ -132,7 +156,7 @@
             android:id="@+id/register_terms"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:text="@string/terms_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -141,14 +165,76 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/register_button"
             android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginTop="24dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/register_button"
             android:textColor="@color/colorOnPrimary"
+            android:textSize="@dimen/text_heading"
+            app:cornerRadius="@dimen/corner_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_terms" />
+
+        <TextView
+            android:id="@+id/register_social_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/or_continue_with"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/text_body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_button" />
+
+        <!-- Social login icons only, as in the design - display only.
+             Tapping one shows a toast; there is no Google / Apple /
+             Facebook login behind them (local login only). -->
+        <LinearLayout
+            android:id="@+id/register_social_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_social_label">
+
+            <TextView
+                android:id="@+id/social_google"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/social_circle_background"
+                android:gravity="center"
+                android:text="G"
+                android:textColor="#4285F4"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/social_apple"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/social_circle_background"
+                android:gravity="center"
+                android:text="🍎"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/social_facebook"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/social_circle_background"
+                android:gravity="center"
+                android:text="f"
+                android:textColor="#1877F2"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/register_login_link"
@@ -159,7 +245,28 @@
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_button" />
+            app:layout_constraintTop_toBottomOf="@+id/register_social_row" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/register_hero_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="@dimen/corner_radius"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_login_link">
+
+            <ImageView
+                android:id="@+id/register_hero"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:contentDescription="@string/splash_burger_content_description"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_splash_burger" />
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

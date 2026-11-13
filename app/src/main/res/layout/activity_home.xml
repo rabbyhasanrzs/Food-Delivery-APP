@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Home - polished: fitsSystemWindows keeps the brand clear of the
-     status bar / camera cutout; soft background, white search field,
-     section title, then the 2-column product grid. -->
+<!-- Home - as designed: white screen, RabbY brand top left with a
+     round avatar top right, search bar with a red filter button,
+     category chips (All red when selected), 2-column product grid,
+     and a red bottom navigation bar with a central + button.
+     No chat icon (Customer Support is excluded) and no Profile
+     screen yet - the bar is Home, Favourites, + (featured burger)
+     and Log out, all of which work. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccentSoft"
+    android:background="@color/colorBackground"
     android:fitsSystemWindows="true"
-    android:padding="@dimen/screen_padding"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/home_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="cursive"
         android:text="@string/brand_name"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorTextPrimary"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/home_logout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/logout"
+    <TextView
+        android:id="@+id/home_avatar"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/avatar_background"
+        android:gravity="center"
+        android:text="R"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,48 +48,196 @@
         android:id="@+id/home_greeting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
         android:text="@string/home_greeting_guest"
         android:textColor="@color/colorTextSecondary"
         android:textSize="@dimen/text_body"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/home_avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_brand" />
 
-    <EditText
-        android:id="@+id/home_search"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home_search_row"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_greeting">
+
+        <EditText
+            android:id="@+id/home_search"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@drawable/search_background"
+            android:hint="@string/search_hint"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/home_filter_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/home_filter_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="☰"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="18sp"
+            app:cornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/home_category_scroll"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/search_background"
-        android:hint="@string/search_hint"
-        android:inputType="text"
-        android:padding="12dp"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_greeting" />
+        app:layout_constraintTop_toBottomOf="@+id/home_search_row">
 
-    <TextView
-        android:id="@+id/home_section_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/home_section_title"
-        android:textColor="@color/colorTextPrimary"
-        android:textSize="@dimen/text_heading"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_search" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/chip_all"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/category_all"
+                android:textColor="@color/colorOnPrimary"
+                app:cornerRadius="18dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/chip_combos"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/colorDivider"
+                android:text="@string/category_combos"
+                android:textColor="@color/colorTextPrimary"
+                app:cornerRadius="18dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/chip_sliders"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/colorDivider"
+                android:text="@string/category_sliders"
+                android:textColor="@color/colorTextPrimary"
+                app:cornerRadius="18dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/chip_burgers"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:backgroundTint="@color/colorDivider"
+                android:text="@string/category_burgers"
+                android:textColor="@color/colorTextPrimary"
+                app:cornerRadius="18dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_product_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/home_bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_section_title"
+        app:layout_constraintTop_toBottomOf="@+id/home_category_scroll"
         tools:listitem="@layout/item_product" />
+
+    <!-- Red bottom navigation bar, as designed. -->
+    <LinearLayout
+        android:id="@+id/home_bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="@drawable/bottom_nav_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="⌂"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/nav_favourites"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="♥"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/nav_add"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/favourite_background"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nav_orders"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="☰"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/nav_logout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="↪"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/home_logout_button"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

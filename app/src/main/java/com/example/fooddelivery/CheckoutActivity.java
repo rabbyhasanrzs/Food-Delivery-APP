@@ -79,6 +79,11 @@ public class CheckoutActivity extends AppCompatActivity {
                 CurrencyFormatter.format(PricingConfig.DELIVERY_FEE_BDT));
         ((TextView) findViewById(R.id.checkout_total)).setText(
                 CurrencyFormatter.format(totalBdt));
+        ((TextView) findViewById(R.id.checkout_total_bottom)).setText(
+                CurrencyFormatter.format(totalBdt));
+
+        findViewById(R.id.checkout_back).setOnClickListener(v -> finish());
+        findViewById(R.id.checkout_search).setOnClickListener(v -> finish());
 
         nameInput = findViewById(R.id.checkout_name);
         addressInput = findViewById(R.id.checkout_address);

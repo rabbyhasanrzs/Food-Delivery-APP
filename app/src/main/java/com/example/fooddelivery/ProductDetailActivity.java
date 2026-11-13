@@ -57,6 +57,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         totalText = findViewById(R.id.detail_total);
         updateTotal();
 
+        findViewById(R.id.detail_back).setOnClickListener(v -> finish());
+        findViewById(R.id.detail_search).setOnClickListener(v -> finish());
+
         Button minusButton = findViewById(R.id.detail_minus);
         Button plusButton = findViewById(R.id.detail_plus);
         minusButton.setOnClickListener(v -> {
@@ -110,6 +113,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void updateTotal() {
         quantityText.setText(String.valueOf(quantity));
-        totalText.setText(CurrencyFormatter.format(product.getPriceBdt() * quantity));
+        // The red price pill shows the live total (price x portion),
+        // as in the design; the small line shows the unit price.
+        TextView priceText = findViewById(R.id.detail_price);
+        priceText.setText(CurrencyFormatter.format(product.getPriceBdt() * quantity));
+        totalText.setText(CurrencyFormatter.format(product.getPriceBdt()) + " × " + quantity);
     }
 }

@@ -48,6 +48,18 @@ public class RegisterActivity extends AppCompatActivity {
         Button signUpButton = findViewById(R.id.register_button);
         TextView loginLink = findViewById(R.id.register_login_link);
 
+        findViewById(R.id.register_back).setOnClickListener(v -> finish());
+        // Social icons are display only, as in the design - no
+        // Google / Apple / Facebook login behind them.
+        findViewById(R.id.social_google).setOnClickListener(v ->
+                Toast.makeText(this, R.string.social_login_unavailable,
+                        Toast.LENGTH_SHORT).show());
+        findViewById(R.id.social_apple).setOnClickListener(v ->
+                Toast.makeText(this, R.string.social_login_unavailable,
+                        Toast.LENGTH_SHORT).show());
+        findViewById(R.id.social_facebook).setOnClickListener(v ->
+                Toast.makeText(this, R.string.social_login_unavailable,
+                        Toast.LENGTH_SHORT).show());
         signUpButton.setOnClickListener(v -> register());
         loginLink.setOnClickListener(v -> {
             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));

@@ -1,243 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Home - as designed: white screen, RabbY brand top left with a
-     round avatar top right, search bar with a red filter button,
-     category chips (All red when selected), 2-column product grid,
-     and a red bottom navigation bar with a central + button.
-     No chat icon (Customer Support is excluded) and no Profile
-     screen yet - the bar is Home, Favourites, + (featured burger)
-     and Log out, all of which work. -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    android:fitsSystemWindows="true" xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/home_brand"
-        android:layout_width="wrap_content"
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="cursive"
-        android:text="@string/brand_name"
-        android:textColor="@color/colorTextPrimary"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp">
 
-    <TextView
-        android:id="@+id/home_avatar"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/avatar_background"
-        android:gravity="center"
-        android:text="R"
-        android:textColor="@color/colorOnPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/home_greeting"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/home_greeting_guest"
-        android:textColor="@color/colorTextSecondary"
-        android:textSize="@dimen/text_body"
-        app:layout_constraintEnd_toStartOf="@+id/home_avatar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_brand" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/home_search_row"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_greeting">
-
-        <EditText
-            android:id="@+id/home_search"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:background="@drawable/search_background"
-            android:hint="@string/search_hint"
-            android:inputType="text"
-            android:paddingStart="16dp"
-            android:paddingEnd="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/home_filter_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/home_filter_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="☰"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="18sp"
-            app:cornerRadius="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <HorizontalScrollView
-        android:id="@+id/home_category_scroll"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_search_row">
-
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/chip_all"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="@string/category_all"
-                android:textColor="@color/colorOnPrimary"
-                app:cornerRadius="18dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/chip_combos"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/colorDivider"
-                android:text="@string/category_combos"
-                android:textColor="@color/colorTextPrimary"
-                app:cornerRadius="18dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/chip_sliders"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/colorDivider"
-                android:text="@string/category_sliders"
-                android:textColor="@color/colorTextPrimary"
-                app:cornerRadius="18dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/chip_burgers"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:backgroundTint="@color/colorDivider"
-                android:text="@string/category_burgers"
-                android:textColor="@color/colorTextPrimary"
-                app:cornerRadius="18dp" />
-        </LinearLayout>
-    </HorizontalScrollView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_product_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/home_bottom_nav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_category_scroll"
-        tools:listitem="@layout/item_product" />
-
-    <!-- Red bottom navigation bar, as designed. -->
-    <LinearLayout
-        android:id="@+id/home_bottom_nav"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:background="@drawable/bottom_nav_background"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/nav_home"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="⌂"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="26sp" />
-
-        <TextView
-            android:id="@+id/nav_favourites"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="♥"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/nav_add"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:background="@drawable/favourite_background"
-            android:gravity="center"
-            android:text="+"
-            android:textColor="@color/colorPrimary"
+            android:text="RabbY"
+            android:textColor="@color/dark"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold|italic"
+            android:fontFamily="serif" />
 
         <TextView
-            android:id="@+id/nav_orders"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="☰"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="22sp" />
-
-        <TextView
-            android:id="@+id/nav_logout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="↪"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="24sp" />
+            android:id="@+id/tvTagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order your favourite food!"
+            android:textColor="@color/gray_text"
+            android:textSize="13sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/home_logout_button"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <!-- Search -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_input"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_search" />
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:hint="Search"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Category chips (code diye add hoy) -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:paddingHorizontal="20dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/chipContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+    <!-- Food grid -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFoods"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:padding="12dp" />
+
+    <!-- Bottom navigation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_bottom_bar"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="18dp"
+            android:src="@drawable/ic_home"
+            android:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/navFav"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="18dp"
+            android:src="@drawable/ic_heart"
+            android:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="18dp"
+            android:src="@drawable/ic_person"
+            android:tint="@color/white" />
+    </LinearLayout>
+</LinearLayout>

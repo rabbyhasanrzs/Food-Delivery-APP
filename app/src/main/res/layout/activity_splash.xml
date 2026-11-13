@@ -1,51 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Splash screen - as designed: red-to-pink gradient, white RabbY
-     brand in the centre, real burger photo along the bottom. -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+    android:fitsSystemWindows="true" xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_gradient"
-    android:fitsSystemWindows="true"
-    tools:context=".SplashActivity">
+    android:background="@drawable/bg_gradient_red">
 
     <TextView
-        android:id="@+id/splash_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="cursive"
-        android:text="@string/brand_name"
-        android:textColor="@color/colorOnPrimary"
-        android:textSize="64sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/splash_tagline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
-
-    <TextView
-        android:id="@+id/splash_tagline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/splash_tagline"
-        android:textColor="@color/colorOnPrimary"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/splash_brand" />
+        android:layout_gravity="center"
+        android:text="RabbY"
+        android:textColor="@color/white"
+        android:textSize="44sp"
+        android:textStyle="bold|italic"
+        android:fontFamily="serif" />
 
     <ImageView
-        android:id="@+id/splash_burger_image"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:contentDescription="@string/splash_burger_content_description"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_splash_burger"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_burger" />
+</FrameLayout>

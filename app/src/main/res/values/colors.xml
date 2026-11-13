@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Phase 1 - RabbY red-and-white design tokens (blueprint Section 2). -->
+<!-- RabbY colours from RabbY.zip + blueprint tokens kept from the repo. -->
 <resources>
+    <color name="red">#F02D3A</color>
+    <color name="red_light">#FF8A93</color>
+    <color name="dark">#3A2E2E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray_bg">#F3F3F3</color>
+    <color name="gray_text">#777777</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#B71C1C</color>
     <color name="colorPrimaryDark">#8E1B1F</color>
     <color name="colorPrimaryLight">#E53935</color>

@@ -34,19 +34,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "user_email TEXT, food_name TEXT, portion INTEGER, total INTEGER, " +
                 "date TEXT DEFAULT CURRENT_TIMESTAMP)");
 
-        // image = drawable er file name (jemon burger1). File na thakle placeholder dekhabe
+        // image = drawable er file name (jemon img_chicken_burger). File na thakle placeholder dekhabe
         addFood(db, "Cheeseburger", "Wendy's Burger", 4.9, 350, // DEMO ৳350
                 "The Cheeseburger Wendy's Burger is a classic fast food burger that packs a punch of flavor in every bite. Made with a juicy beef patty cooked to perfection, it's topped with melted American cheese, crispy lettuce, ripe tomato, and crunchy pickles.",
-                "burger1", "Classic", 26);
+                "img_cheeseburger_wendys", "Classic", 26);
         addFood(db, "Hamburger", "Veggie Burger", 4.8, 300, // DEMO ৳300
                 "Enjoy our delicious Hamburger Veggie Burger, made with a savory blend of vegetables and herbs, topped with crisp lettuce, juicy tomatoes, and tangy pickles, all served on a soft, toasted bun.",
-                "burger2", "Combos", 14);
+                "img_veggie_burger", "Combos", 14);
         addFood(db, "Hamburger", "Chicken Burger", 4.6, 320, // DEMO ৳320
                 "A tender grilled chicken fillet with fresh lettuce, tomato and creamy sauce in a soft sesame bun.",
-                "burger3", "Sliders", 18);
+                "img_chicken_burger", "Sliders", 18);
         addFood(db, "Hamburger", "Fried Chicken Burger", 4.5, 340, // DEMO ৳340
                 "Crispy golden fried chicken with spicy mayo and crunchy slaw, served in a toasted bun.",
-                "burger4", "Classic", 20);
+                "img_fried_chicken_burger", "Classic", 20);
     }
 
     @Override

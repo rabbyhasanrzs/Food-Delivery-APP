@@ -20,5 +20,5 @@
         android:layout_height="160dp"
         android:layout_gravity="bottom|start"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_burger" />
+        android:src="@drawable/img_splash_burger_photo" />
 </FrameLayout>

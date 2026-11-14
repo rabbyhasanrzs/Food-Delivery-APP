@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- RabbY colours from RabbY.zip + blueprint tokens kept from the repo. -->
 <resources>
+    <color name="red">#F02D3A</color>
+    <color name="red_light">#FF8A93</color>
+    <color name="dark">#3A2E2E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray_bg">#F3F3F3</color>
+    <color name="gray_text">#777777</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#B71C1C</color>
+    <color name="colorPrimaryDark">#8E1B1F</color>
+    <color name="colorPrimaryLight">#E53935</color>
+    <color name="colorAccentSoft">#FFF5F5</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorCard">#FFFFFF</color>
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#616161</color>
+    <color name="colorDivider">#E0E0E0</color>
+    <color name="colorSuccess">#2E7D32</color>
+    <color name="colorSplashGradientStart">#E53935</color>
+    <color name="colorSplashGradientEnd">#F06292</color>
+    <color name="colorOnPrimary">#FFFFFFFF</color>
 </resources>

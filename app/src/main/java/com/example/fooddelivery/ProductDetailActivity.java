@@ -22,9 +22,13 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        // Home theke pathano id niye DB theke food ane
-        int id = getIntent().getIntExtra("food_id", -1);
-        food = new DatabaseHelper(this).getFood(id);
+        // Home theke Intent e food data thakle oita use koro (cloud dam thik thake);
+        // na thakle id diye DB theke food ane
+        food = Food.fromIntent(getIntent());
+        if (food == null) {
+            int id = getIntent().getIntExtra("food_id", -1);
+            food = new DatabaseHelper(this).getFood(id);
+        }
         if (food == null) { finish(); return; }
 
         ImageView img = findViewById(R.id.imgFood);
@@ -56,7 +60,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         // Order Now -> Payment screen e data niye jay
         findViewById(R.id.btnOrder).setOnClickListener(v -> {
             Intent i = new Intent(this, PaymentActivity.class);
-            i.putExtra("food_id", food.getId());
+            Food.putInIntent(i, food);
             i.putExtra("portion", portion);
             i.putExtra("spicy", seekSpicy.getProgress());
             startActivity(i);

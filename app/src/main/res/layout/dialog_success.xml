@@ -34,10 +34,21 @@
         android:textSize="12sp" />
 
     <Button
-        android:id="@+id/btnGoBack"
+        android:id="@+id/btnTrack"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn_dark"
+        android:text="Track Order"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnGoBack"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_btn_red"
         android:text="Go Back"
         android:textAllCaps="false"

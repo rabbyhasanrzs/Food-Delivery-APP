@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -40,6 +41,9 @@ dependencies {
     implementation(libs.material)
     // Needed explicitly by the Home product grid (ProductAdapter / RecyclerView).
     implementation(libs.recyclerview)
+    // Firebase Firestore: real-time order tracking + cloud menu
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)

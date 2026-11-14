@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -24,6 +27,8 @@ public class HomeActivity extends AppCompatActivity {
     private boolean onlyFav = false;
 
     private DatabaseHelper db;
+    private List<Food> cloudFoods = null; // Firestore theke menu ashle ekhane thake
+    private boolean cloudTried = false; // Firestore ekbar try korlei hobe
     private FoodAdapter adapter;
     private EditText etSearch;
     private LinearLayout chipContainer;
@@ -97,9 +102,55 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    // DB theke data ene adapter e dey
+    // Menu ane: age Firestore (cloud) try koro, na parle SQLite
     private void loadFoods() {
-        adapter.setData(db.getFoods(selectedCategory, etSearch.getText().toString(), onlyFav));
+        if (cloudFoods != null) { // cloud menu paile oita thekei filter
+            refreshFavorites(cloudFoods);
+            adapter.setData(filterFoods(cloudFoods));
+            return;
+        }
+        if (cloudTried) { // Firestore ekbar try hoye geche — SQLite diye cholbe
+            adapter.setData(db.getFoods(selectedCategory, etSearch.getText().toString(), onlyFav));
+            return;
+        }
+        cloudTried = true;
+        FirestoreHelper.fetchMenu(this, new FirestoreHelper.MenuCallback() {
+            @Override public void onMenu(List<Food> foods) {
+                if (foods == null || foods.isEmpty()) {
+                    adapter.setData(db.getFoods(selectedCategory, etSearch.getText().toString(), onlyFav));
+                    return;
+                }
+                cloudFoods = foods;
+                refreshFavorites(cloudFoods);
+                adapter.setData(filterFoods(cloudFoods));
+            }
+            @Override public void onError(Exception e) {
+                adapter.setData(db.getFoods(selectedCategory, etSearch.getText().toString(), onlyFav));
+            }
+        });
+    }
+
+    // Favourite SQLite e thake — cloud list er sathe miliye dao
+    private void refreshFavorites(List<Food> foods) {
+        Map<Integer, Boolean> fav = new HashMap<>();
+        for (Food f : db.getFoods("All", "", false)) fav.put(f.getId(), f.isFavorite());
+        for (Food f : foods) {
+            Boolean v = fav.get(f.getId());
+            if (v != null) f.setFavorite(v);
+        }
+    }
+
+    // Cloud list theke category / search / favourite filter (SQLite er motoi)
+    private List<Food> filterFoods(List<Food> foods) {
+        List<Food> out = new ArrayList<>();
+        String q = etSearch.getText().toString().trim().toLowerCase();
+        for (Food f : foods) {
+            if (!selectedCategory.equals("All") && !selectedCategory.equals(f.getCategory())) continue;
+            if (!q.isEmpty() && !(f.getName() + " " + f.getSubtitle()).toLowerCase().contains(q)) continue;
+            if (onlyFav && !f.isFavorite()) continue;
+            out.add(f);
+        }
+        return out;
     }
 
     private void showLogoutDialog() {

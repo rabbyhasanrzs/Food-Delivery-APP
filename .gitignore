@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+# Firebase config (nijer google-services.json, GitHub e dibo na)
+google-services.json

@@ -1,5 +1,7 @@
 package com.example.fooddelivery;
 
+import android.content.Intent;
+
 // Model class: ekta food er sob data ekhane thake (database er ek row = ek Food object)
 public class Food {
     private int id;
@@ -27,4 +29,33 @@ public class Food {
     public int getTime() { return time; }
     public boolean isFavorite() { return favorite; }
     public void setFavorite(boolean favorite) { this.favorite = favorite; }
+
+    // Home theke Intent e kore pathano food data theke Food banay
+    // (cloud menu er dam/name thik rakhte — DB theke abar ante hoy na)
+    public static Food fromIntent(Intent i) {
+        if (i == null || !i.hasExtra("food_name")) return null;
+        return new Food(
+                i.getIntExtra("food_id", -1),
+                i.getStringExtra("food_name"),
+                i.getStringExtra("food_subtitle"),
+                i.getDoubleExtra("food_rating", 0),
+                i.getIntExtra("food_price", 0),
+                i.getStringExtra("food_desc"),
+                i.getStringExtra("food_image"),
+                i.getStringExtra("food_category"),
+                i.getIntExtra("food_time", 0),
+                false);
+    }
+
+    public static void putInIntent(Intent i, Food f) {
+        i.putExtra("food_id", f.getId());
+        i.putExtra("food_name", f.getName());
+        i.putExtra("food_subtitle", f.getSubtitle());
+        i.putExtra("food_rating", f.getRating());
+        i.putExtra("food_price", f.getPrice());
+        i.putExtra("food_desc", f.getDescription());
+        i.putExtra("food_image", f.getImage());
+        i.putExtra("food_category", f.getCategory());
+        i.putExtra("food_time", f.getTime());
+    }
 }

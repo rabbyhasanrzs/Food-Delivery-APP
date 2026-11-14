@@ -27,7 +27,9 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
 
         db = new DatabaseHelper(this);
-        food = db.getFood(getIntent().getIntExtra("food_id", -1));
+        // Cloud menu theke ashle Intent ei food data thake; na thakle DB theke ane
+        food = Food.fromIntent(getIntent());
+        if (food == null) food = db.getFood(getIntent().getIntExtra("food_id", -1));
         portion = getIntent().getIntExtra("portion", 1);
         if (food == null) { finish(); return; }
 
@@ -49,19 +51,32 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void pay() {
         String email = new SessionManager(this).getEmail();
+        // Tracking er jonno unique order id
+        String orderId = "ORD-" + System.currentTimeMillis();
         // Order SQLite e save
         if (db.insertOrder(email, food.getName() + " " + food.getSubtitle(), portion, total)) {
-            showSuccessDialog();
+            // SQLite er pashapashi Firestore eo order jabe (net/setup na thakle chupchap skip)
+            FirestoreHelper.saveOrder(this, orderId, email,
+                    food.getName() + " " + food.getSubtitle(), portion, total);
+            showSuccessDialog(orderId);
         } else {
             Toast.makeText(this, "Payment failed, abar try koro", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void showSuccessDialog() {
+    private void showSuccessDialog(String orderId) {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_success);
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Button btnTrack = dialog.findViewById(R.id.btnTrack);
+        btnTrack.setOnClickListener(v -> {
+            dialog.dismiss();
+            Intent i = new Intent(this, OrderTrackingActivity.class);
+            i.putExtra("order_id", orderId);
+            startActivity(i);
+        });
 
         Button btnGoBack = dialog.findViewById(R.id.btnGoBack);
         btnGoBack.setOnClickListener(v -> {
